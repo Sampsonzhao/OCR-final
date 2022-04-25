@@ -1,0 +1,57 @@
+CHAPTER 34 Drugs Used in Disorders of Coagulation 613
+
+Administration & Dosage
+The indications for the use of heparin are described in the section 
+on clinical pharmacology. A plasma concentration of heparin of 
+0.2–0.4 unit/mL (by protamine titration) or 0.3–0.7 unit/mL 
+(anti-Xa units) is considered to be the therapeutic range for 
+treatment of venous thromboembolic disease. This concentra-
+tion generally corresponds to a PTT of 1.5–2.5 times baseline. 
+However, the use of the PTT for heparin monitoring is problem-
+atic. There is no standardization scheme for the PTT as there is 
+for the prothrombin time (PT) and its international normalized 
+ratio (INR) in warfarin monitoring. The PTT in seconds for a 
+given heparin concentration varies between different reagent/
+instrument systems. Thus, if the PTT is used for monitoring, the 
+laboratory should determine the clotting time that corresponds to 
+the therapeutic range by protamine titration or anti-Xa activity, 
+as listed above.
+In addition, some patients have a prolonged baseline PTT due 
+to factor deficiency or inhibitors (which could increase bleeding 
+risk) or lupus anticoagulant (which is not associated with bleeding 
+risk but may be associated with thrombosis risk). Using the PTT 
+to assess heparin effect in such patients is problematic. An alter-
+native is to use anti-Xa activity to assess heparin concentration, a 
+test now widely available on automated coagulation instruments. 
+This approach measures heparin concentration; however, it does 
+not provide the global assessment of intrinsic pathway integrity 
+of the PTT.
+The following strategy is recommended: prior to initiating 
+anticoagulant therapy of any type, the integrity of the patient’s 
+hemostatic system should be assessed by a careful history of 
+prior bleeding events, as well as baseline PT and PTT. If there 
+is a prolonged clotting time, the cause of this (deficiency or 
+inhibitor) should be determined prior to initiating therapy, and 
+treatment goals stratified to a risk-benefit assessment. In high-
+risk patients measuring both the PTT and anti-Xa activity may 
+be useful. When intermittent heparin administration is used, 
+the aPTT or anti-Xa activity should be measured 6 hours after 
+the administered dose to maintain prolongation of the aPTT to 
+2–2.5 times that of the control value. However, LMW heparin 
+therapy is the preferred option in this case, as no monitoring is 
+required in most patients.
+Continuous intravenous administration of heparin is accom-
+plished via an infusion pump. After an initial bolus injection of 
+80–100 units/kg, a continuous infusion of about 15–22 units/kg 
+per hour is required to maintain the anti-Xa activity in the 
+range of 0.3–0.7 units/mL. Low-dose prophylaxis is achieved 
+with subcutaneous administration of heparin, 5000 units 
+every 8–12 hours. Because of the danger of hematoma forma-
+tion at the injection site, heparin must never be administered 
+intramuscularly.
+Prophylactic enoxaparin is given subcutaneously in a dosage 
+of 30 mg twice daily or 40 mg once daily. Full-dose enoxaparin 
+therapy is 1 mg/kg subcutaneously every 12 hours. This cor-
+responds to a therapeutic anti-factor Xa level of 0.5–1 unit/mL. 
+Selected patients may be treated with enoxaparin 1.5 mg/kg 
+once a day, with a target anti-Xa level of 1.5 units/mL. 

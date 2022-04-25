@@ -1,0 +1,59 @@
+urea transporter UT] (UT-A, UTA-1) molecules into the apical
+membranes of collecting duct cells in the medulla.
+
+Urea concentration in the medulla plays an important role
+maintaining the high osmolarity of the medulla and in the concen-
+tration of urine. ADH secretion is regulated by serum osmolality
+and by volume status. A new class of drugs, the vaptans (see Agents
+That Alter Water Excretion), are ADH antagonists.
+
+RENAL AUTACOIDS
+
+A number of locally produced compounds exhibit physiologic
+effects within the kidney and are therefore referred to as autacoids,
+or paracrine factors. Several of these autacoids (adenosine, the pros-
+taglandins, and urodilatin) appear to have important effects on the
+pharmacology of diuretics. Since these effects are complex, they
+will be treated independently of the individual tubule segments
+discussed above.
+
+ADENOSINE
+
+Adenosine is an unphosphorylated ribonucleoside whose actions
+in the kidney have been intensively studied. As in all tissues, renal
+adenosine concentrations rise in response to hypoxia and ATP
+consumption. In most tissues, hypoxia results in compensatory
+vasodilation and, if cardiac output is sufficient, increased blood
+flow. The kidney has different requirements because increased
+blood flow leads to an increase in glomerular filtration rate (GFR)
+and greater solute delivery to the tubules. This increased delivery
+would increase tubule work and A}? consumption. In contrast,
+in the hypoxic kidney, adenosine actually decreases blood flow
+and GFR. Because the medulla is alvays more hypoxic than the
+cortex, adenosine increases “.." scatsorption from the reduced
+flow in the cortex, so that c«!:veiy co medullary segments will be
+even further reduced.
+
+There are four distinct adenosine receptors (Ay, Ap, Agps
+and A), all of which have been found in the kidney. However,
+probably only one of these (A,) is of importance. The adenosine
+A, receptor is found on the pre-glomerular afferent arteriole, as
+well as the PCT and most other tubule segments. Adenosine is
+known to affect ion transport in the PCT, the medullary TAL,
+and collecting tubules. In addition, adenosine (via A, receptors
+on the afferent arteriole) reduces blood flow to the glomerulus
+(and GFR) and is also the key signaling molecule in the process of
+tubuloglomerular feedback. Adenosine receptor antagonists have
+generally been found to block the enhancement of NHE3 activ-
+ity and thus exhibit diuretic activity (see below). It is particularly
+interesting that unlike other diuretics that act upstream of the
+collecting tubules, adenosine antagonists do not cause wasting
+of K’,
+
+PROSTAGLANDINS
+
+scaled chr ee eat eisai
+Prostaglandins contribute importantly to renal physiology and to
+the function of many other organs (see Chapter 18). Five prosta-
+glandin subtypes (PGE), PGI,, PGD,, PGF,,, and thromboxane
+

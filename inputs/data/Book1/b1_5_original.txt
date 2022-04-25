@@ -1,0 +1,55 @@
+Drugs Used in the Treatment of Gastrointestinal Diseases 1099
+
+channel (ClC-2) in the small intestine. This increases chloriderich fluid secretion into the intestine, which stimulates intestinal 
+motility and shortens intestinal transit time. Over 50% of patients 
+experience a bowel movement within 24 hours of taking one dose. 
+A dose of 24 mcg orally twice daily is the recommended dose for 
+treatment of chronic constipation. There appears to be no loss of 
+efficacy with long-term therapy. After discontinuation of the drug, 
+constipation may return to its pretreatment severity. Lubiprostone 
+has minimal systemic absorption but is designated category C for 
+pregnancy because of increased fetal loss in guinea pigs. Lubipro-
+stone may cause nausea in up to 30% of patients due to delayed 
+gastric emptying.
+Linaclotide and plecanatide are minimally absorbed, short 
+amino acid peptides that stimulate intestinal chloride secre-
+tion through a different mechanism by binding to and acti-
+vating guanylate cyclase-C on the luminal surface. This leads 
+to increased intracellular and extracellular cyclic guanosine 
+monophosphate (cGMP) with activation of the cystic fibrosis 
+transmembrane conductance regulator (CFTR), followed by 
+chloride-rich secretion and acceleration of intestinal transit. 
+Both agents are approved for the treatment of chronic constipa-
+tion (linaclotide 145 mcg orally once daily; plecanatide 3 mg 
+orally once daily); linaclotide is also approved for the treatment 
+of irritable bowel syndrome with constipation (290 mcg orally 
+once daily). These agents result in an average increase of 1–2 
+bowel movements per week that usually occurs within the first 
+week of treatment. Upon discontinuation of the drug, bowel 
+movement frequency returns to normal within 1 week. The 
+most common side effect is diarrhea, which occurs in up to 
+20% of patients, with severe diarrhea in 2%. These drugs have 
+negligible absorption at standard doses. Both drugs are contra-
+indicated in pediatric patients because of reports of increased 
+mortality in juvenile mice from dehydration. (Crofelemer is a 
+small molecule with the opposite effect: it is an inhibitor of the 
+CFTR channel and has recently been approved for the treatment 
+of HIV-drug-induced diarrhea.)
+
+OPIOID RECEPTOR ANTAGONISTS
+Acute and chronic therapy with opioids may cause constipation 
+by decreasing intestinal motility, which results in prolonged tran-
+sit time and increased absorption of fecal water (see Chapter 31). 
+Use of opioids after surgery for treatment of pain as well as endog-
+enous opioids also may prolong the duration of postoperative 
+ileus. These effects are mainly mediated through intestinal mu 
+(μ)-opioid receptors. Two selective antagonists of the μ-opioid 
+receptor are commercially available: methylnaltrexone bromide 
+and alvimopan. Because these agents do not readily cross the 
+blood-brain barrier, they inhibit peripheral μ-opioid receptors 
+without impacting analgesic effects within the central nervous 
+system. Methylnaltrexone is approved for the treatment of 
+opioid-induced constipation in patients receiving palliative care 
+for advanced illness who have had inadequate response to other 
+agents. It is administered as a subcutaneous injection (0.15 mg/
+kg) every 2 days. Alvimopan is approved for short-term use to 

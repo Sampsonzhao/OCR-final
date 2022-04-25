@@ -1,0 +1,58 @@
+CHAPTER 34 Drugs Used in Disorders of Coagulation 613
+Administration & Dosage
+The indications for the use of heparin are described in the section
+on clinical pharmacology. A plasma concentration of heparin of
+0.2—0.4 unit/mL (by protamine titration) or 0.3—-0.7 unit/mL
+(anti-Xa units) is considered to be the therapeutic range for
+treatment of venous thromboembolic disease. This concentra-
+tion generally corresponds to a PTT of 1.5—2.5 times baseline.
+However, the use of the PTT for heparin monitoring is problem-
+atic. There is no standardization scheme for the PTT as there is
+for the prothrombin time (PT) and its international normalized
+ratio (INR) in warfarin monitoring. The PTT in seconds for a
+given heparin concentration varies between different reagent/
+instrument systems. Thus, if the PTT is used for monitoring, the
+laboratory should determine the clotting time that corresponds to
+the therapeutic range by protamine titration or anti-Xa activity,
+as listed above.
+
+In addition, some patients have a prolonged baseline PTT due
+to factor deficiency or inhibitors (which could increase bleeding
+risk) or lupus anticoagulant (which is not associated with bleeding
+tisk but may be associated with thrombosis risk). Using the PTT
+to assess heparin effect in such patients is problematic. An alter-
+
+_ native is to use anti-Xa activity to assess heparin concentration, a
+test now widely availab le on automated coagulation instruments.
+This approach measui res hey parin concentration; however, it does
+not provide the global assess: ment of intrinsic pathway integrity
+
+The following strategy is recommended: prior to initiating
+
+oagulant therapy of any type, the integrity of the patient's
+: n should be assessed by a careful history of
+s, as well as baseline PT and PTT. If there
+
+the cause of this (deficiency or
+
+be c 1 prior to initiating therapy, and
+k-benefit assessment. In high-
+
+TT and anti-Xa activity may
+
+arin administration is used,
+
+Id be measured 6 hours after
+
+prolongation of the aPTT to
+
+ue. However, LMW heparin
+
+his case, as no monitoring is
+
+ration of heparin is accom-
+
+n initial bolus injection of
+
+ti-Xa activity in the
+

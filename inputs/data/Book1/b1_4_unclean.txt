@@ -1,0 +1,52 @@
+CHAPTER 34 Drugs Used in Disorders of Coagulation 613
+Administration & Dosage
+The indications for the use of heparin are described in the section
+on clinical pharmacology. A plasma concentration of heparin of
+0.2-0.4 unit/mL (by protamine titration) or 0.3—-0.7 unit/mL
+(anti-Xa units) is considered to be the therapeutic range for
+treatment of venous thromboembolic disease. This concentra-
+tion generally corresponds to a PTT of 1.5-2.5 times baseline.
+However, the use of the PTT for heparin monitoring is problem-
+atic. There is no standardization scheme for the PTT as there is
+for the prothrombin time (PT) and its international normalized
+ratio (INR) in warfarin monitoring. The PTT in seconds for a
+given heparin concentration varies between different reagent/
+instrument systems. Thus, if the PTT is used for monitoring, the
+laboratory should determine the clotting time that corresponds to
+the therapeutic range by protamine titration or anti-Xa activity,
+as listed above.
+
+In addition, some patients have a prolonged baseline PTT due
+to factor deficiency or inhibitors (which could increase bleeding
+risk) or lupus anticoagulant (which is not associated with bleeding
+risk but may be associated with thrombosis risk). Using the PTT
+to assess heparin effect in such patients is problematic. An alter-
+
+native j ‘to use anti-Xa activity to assess heparin concentration, a
+
+e test now widely available on automated coagulation instruments.
+This approach measures | heparin concentration; however, it does
+not provide the global assessment of intrinsic pathway integrity
+of the PTT. ae
+
+The following strategy is recommended: prior to initiating
+
+inticoagulant therapy of any type, the integrity of the patient's
+hemostatic system should be assessed by a careful history of
+prior bleeding events, as well as baseline PT and PTT. If there
+prolonged clotting time, the cause of this (deficiency or
+inhibitor) should be determined prior to initiating therapy, and
+! ified to a risk-benefit assessment. In high-
+iring both the PTT and anti-Xa activity may
+nitte heparin administration is used,
+vity should be measured 6 hours after
+intain pro longation of the aPTT to
+| value. However, LMW heparin
+ption in this case, as no monitoring is
+istration of heparin is accom-
+tan initial bolus injection of
+on of about 15-22 units/kg
+
+phylaxis is achieved voiced
+1, 5000 units
+

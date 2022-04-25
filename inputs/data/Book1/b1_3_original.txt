@@ -1,0 +1,53 @@
+structures is not yet fully understood, and it is not possible to 
+relate individual symptoms to involvement at specific sites.
+
+PARKINSONISM
+Parkinsonism is characterized by a combination of rigidity, brady-
+kinesia, tremor, and postural instability that can occur for a variety 
+of reasons but is usually idiopathic (Parkinson’s disease or paralysis 
+agitans). Bradykinesia should be present before a diagnosis of Par-
+kinson’s disease is made. Focal dystonic features may be present. 
+Cognitive decline occurs in many patients as the disease advances. 
+Other nonmotor symptoms include affective disorders (anxiety 
+or depression); confusion, cognitive impairment, or personality 
+changes; apathy; fatigue; abnormalities of autonomic function (eg, 
+sphincter or sexual dysfunction, dysphagia and choking, sweating 
+abnormalities, sialorrhea, or disturbances of blood pressure regula-
+tion); sleep disorders; and sensory complaints or pain. The disease 
+is incurable, is generally progressive, and leads to increasing dis-
+ability with time, but pharmacologic treatment may relieve motor 
+symptoms and improve the quality of life for many years.
+
+Pathogenesis
+The pathogenesis of parkinsonism seems to relate to a combina-
+tion of impaired degradation of proteins, intracellular protein 
+accumulation and aggregation, oxidative stress, mitochondrial 
+damage, inflammatory cascades, and apoptosis. Studies in twins 
+suggest that genetic factors are important, especially when the 
+disease occurs in patients under age 50. Recognized genetic 
+abnormalities account for 10–15% of cases. Mutations of the 
+α-synuclein gene at 4q21 or duplication and triplication of the 
+normal synuclein gene are associated with Parkinson’s disease, 
+which is now widely recognized as a synucleinopathy. Mutations of 
+the leucine-rich repeat kinase 2 (LRRK2) gene at 12cen, and the 
+UCHL1 gene may also cause autosomal dominant parkinsonism. 
+Mutations in the parkin gene (6q25.2–q27) cause early-onset, 
+autosomal recessive, familial parkinsonism, or sporadic juvenile-
+onset parkinsonism. Several other genes or chromosomal regions 
+have been associated with familial forms of the disease. Envi-
+ronmental or endogenous toxins may also be important in the 
+etiology of the disease. Epidemiologic studies reveal that cigarette 
+smoking, coffee, anti-inflammatory drug use, and high serum uric 
+acid levels are protective, whereas the incidence of the disease is 
+increased in those working in teaching, health care, or farming, 
+and in those with lead or manganese exposure or with vitamin D 
+deficiency.
+The finding of Lewy bodies (intracellular inclusion bodies 
+containing α-synuclein) in fetal dopaminergic cells transplanted 
+into the brain of parkinsonian patients some years previously has 
+provided some support for suggestions that Parkinson’s disease 
+may represent a prion disease.
+Staining for α-synuclein has revealed that pathology is more 
+widespread than previously recognized, developing initially in the 
+olfactory nucleus and lower brainstem (stage 1 of Braak scale), 
+then the higher brainstem (stage 2), the substantia nigra (stage 3), 

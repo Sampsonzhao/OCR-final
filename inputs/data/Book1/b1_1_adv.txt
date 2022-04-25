@@ -1,0 +1,55 @@
+100 SECTION II Autonomic Drugs
+The sensory fibers in the nonadrenergic, noncholinergic sys-
+tems are probably better termed “sensory-efferent” or “sensory-
+local effector” fibers because, when activated by a sensory input,
+they are capable of releasing transmitter peptides from the sensory
+ending itself, from local axon branches, and from collaterals that
+terminate in the autonomic ganglia. These peptides are potent
+agonists in many autonomic effector tissues.
+FUNCTIONAL ORGANIZATION OF
+AUTONOMIC ACTIVITY
+Autonomic function is integrated and regulated at many levels,
+from the CNS to the effector cells. Most regulation uses nega-
+tive feedback, but several other mechanisms have been identified.
+Negative feedback is particularly important in the responses of the
+ANS to the administration of autonomic drugs.
+Central Integration
+At the highest level—midbrain and medulla—the two divisions of
+the ANS and the endocrine system are integrated with each other,
+with sensory input, and with information from higher CNS cen-
+ters, including the cerebral cortex. These interactions are such that
+early investigators called the parasympathetic system a tropho-
+tropic one (ie, leading to growth) used to “rest and digest” and
+the sympathetic system an ergotropic one (ie, leading to energy
+expenditure), which is activated for “fight or flight.” Although
+such terms offer little insight into the mechanisms involved, they
+do provide simple descriptions applicable to many of the actions
+of the systems (Table 6-3). For example, slowing of the heart and
+stimulation of digestive activity are typical energy-conserving and
+energy-storing actions of the parasympathetic system. In contrast,
+cardiac stimulation, increased blood sugar, and cutaneous vaso-
+constriction are responses produced by sympathetic discharge that
+are suited to fighting or surviving attack.
+
+At a more subtle level of interactions in the brain stem,
+medulla, and spinal cord, there are important cooperative interac-
+tions between the parasympathetic and sympathetic systems. For
+some organs, sensory fibers associated with the parasympathetic
+system exert reflex control over motor outflow in the sympathetic
+system. Thus, the sensory carotid sinus baroreceptor fibers in the
+glossopharyngeal nerve have a major influence on sympathetic
+outflow from the vasomotor center. This example is described in
+greater detail in the following text. Similarly, parasympathetic sen-
+sory fibers in the wall of the urinary bladder significantly influence
+sympathetic inhibitory outflow to that organ. Within the ENS,
+sensory fibers from the wall of the gut synapse on both pregan-
+glionic and postganglionic motor neurons that control intestinal
+smooth muscle and secretory cells (Figure 6-2).
+
+A. Integration of Cardiovascular Function
+
+Autonomic reflexes are particularly important in understand-
+ing cardiovascular responses to autonomic drugs. As indicated
+in Figure 6-7, the primary controlled variable in cardiovascular
+function is mean arterial pressure. Changes in any variable
+
