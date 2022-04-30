@@ -3,8 +3,8 @@ title: "How far has Optical Character Recognition Softwares have come."
 author: "Sampson Zhao"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: bookdown::pdf_document2
-subtitle: "Evaulation of OCR software"
-abstract: "Optical Character Recognition (OCR) has been used since the 1930s as a way to recognize standardized text from a photo. This technology has greatly developed throughout the ages, and is now widely used in data entry from printed data, like passports, invoices, etc. Though the earlier versions of OCR required the text to have a set font for recognition, modern iterations of this has developed enough to recognize multiple fonts as well as different writing systems. This project focuses on the accuracy of modern OCR systems, like blank and blank, and will compare the accuracy of the produced text to the originals. (conclusion) Though the softwares... \\par \\textbf{Keywords:} OCR, Tesseract, Magick, Accuracy, Historical Texts, Improvements in OCR, AI related to OCR."
+subtitle: "Evaulation of the Accuracy of OCR"
+abstract: "Though the earlier versions of OCR required the text to have a set font for recognition, modern iterations of this has developed enough to recognize multiple fonts as well as different writing systems. This project focuses on the accuracy of the modern OCR system and will compare the accuracy of the produced text to the originals. It was found that without any level of image processing, the OCR would typically catch a lot of blemishes on the paper, resulting in illegiable text. While using Magick and a third party image processing software, there was a huge increase in accuracy, with texts very near the 100% accuracy rate. While OCR is still immature, as it is unable to recognize the differences between some letters and blemishes, it is still a work in progress, as developement of A.I. and other text recognition improvements will allow the software to evolve once again.  \\par \\textbf{Keywords:} OCR, Tesseract, Magick, Accuracy, Historical Texts, Improvements in OCR, AI related to OCR."
 bibliography: references.bib
 thanks: "Code and data are available at: [https://github.com/Sampsonzhao/OCR-final](https://github.com/Sampsonzhao/OCR-final)."
 
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # install.packages("ggplot2")
 # install.packages("knitr")
 # install.packages("here")
-# install.packages("kableExtra") 
+# install.packages("kableExtra")
 # install.packages('reshape2')
 # install.packages("tesseract")
 # install.packages("magick")
@@ -26,6 +26,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # install.packages("RecordLinkage")
 # install.packages("readr")
 # install.packages("fuzzywuzzyR")
+# install.packages("reticulate")
+# install.packages('scales')
 
 library(tidyverse)
 library(ggplot2)
@@ -39,13 +41,31 @@ library(magrittr)
 library(diffr)
 library(RecordLinkage)
 library(readr)
+library(reticulate)
+reticulate::py_config()
 library(fuzzywuzzyR)
+library(scales)
+
+# Note: some iterations of R and RStudio have been found to cause crashing when loading in Tesseract, use with caution. (After Testing, it was a newer version of R that is causing this problem. Please use R 4.1.3 or older to use.)
 ```
 
 \newpage
 
+```{r, include = FALSE}
+# import data that was collected and processed in 01-image_gather&process.R and 
+# 02-percent_diff_generation.R
+
+percent_diff_b1table <- readr::read_csv(here::here("inputs/data/book_1_percent_diff.csv"))
+percent_diff_b2table <- readr::read_csv(here::here("inputs/data/book_2_percent_diff.csv"))
+
+percent_diff_b1 <- melt(percent_diff_b1table, id.vars = 'bkpage')
+percent_diff_b2 <- melt(percent_diff_b2table, id.vars = 'bkpage_2')
+
+```
+
+
 # Introduction
-OCR was first developed as a technology in the 1910s, as it was primarily used in tandem with reading devices for the blind @OCRfirst, with the main premise of OCR being using some optical device to capture characters on a document, and transform it into a manner where computer software can then recognize the text. Though earlier iterations of OCR were used in the development of text documents to audio readers for the blind or visually impaired, the technology is now widely used as a shortcut in data entry, as documents like passports, cheques, and other printed documentations, can be quickly and accurately transformed, effectively digitizing the document to allow for editing and searching electronically. Though earlier iterations of the software required documents to be in particular fonts for the software to recognize the text, more modern and advanced systems have developed significantly, to the point where these softwares are able to recognize texts in a variety of fonts within the same documen, as well as recognizing different writing systems, like Cyrillic, Arabic, etc. (List of most of the available languages that are recognized by Google’s OCR software [here]( https://support.google.com/drive/answer/176692#zippy=%2Csupported-languages)). 
+OCR was first developed as a technology in the 1910s, as it was primarily used in tandem with reading devices for the blind @OCRfirst, with the main premise of OCR being using some optical device to capture characters on a document, and transform it into a manner where computer software can then recognize the text. Though earlier iterations of OCR were used in the development of text documents to audio readers for the blind or visually impaired, the technology is now widely used as a shortcut in data entry, as documents like passports, cheques, and other printed documentations, can be quickly and accurately transformed, effectively digitizing the document to allow for editing and searching electronically. Though earlier iterations of the software required documents to be in particular fonts for the software to recognize the text, more modern and advanced systems have developed significantly, to the point where these software are able to recognize texts in a variety of fonts within the same document, as well as recognizing different writing systems, like Cyrillic, Arabic, etc. (List of most of the available languages that are recognized by Google’s OCR software [here]( https://support.google.com/drive/answer/176692#zippy=%2Csupported-languages)). 
 
 OCR development has been progressing fairly well, as the accuracy of the software from 19th century to the 20th century has seen an increase of 81% accuracy to 99% accuracy. Though this is comparing the developments of the technologies that these softwares are based off of, there was a fundamental shift in the style of recognition. OCR developed from a character-to-character recognition style to a more pattern recognition style, signifying the advancements of computational power, as effectively they changed from a character-to-character recognition to more of a line-by-line recognition. Though the recognition of text improved drastically back then, there were multiple variables that caused the 1% of texts to fail, and that is related to the pre-processing of the image. Factors like wrinkles, slanting, normalization of ratio and scales, were all factors that attributed to failed OCR reads, these were considered artifacts that the software could not recognize, effectively showing garbage code as a result. Though these factors have improved since the early 2000s, OCR is still continuing on the development of optimizing the overall recognition software. 
 
@@ -58,29 +78,33 @@ While many old texts show faded or blurred text, due to the age of the documents
 This investigation uses the 'R' programming language [@citeR], and the 'R-Studio' Integrated development environment [@citeRStudio] as the primary source of data processing and the generation of the paper. The 'Tidyverse' package was used for manipulation of the datasets [@citetidyverse]. The 'Here' package was used to locate files produced from R scripts [@citehere].'KableExtra' package was used to enhance the overall appearance of tables[@citeKable]. 'knitr' was used to tie all of the information on this document into one digestible PDF [@citeknitr1][@citeknitr2][@citeknitr3]. 'ggplot2' was used to create the bar plots in this document [@citeggplot]. 'reshape2' was used to modify data sets to better create the wanted plots, while simplifying the code needed for those graphs [@citereshape]. 'Tesseract', 'magick', and 'magrittr' was used to implement the OCR recognition of the images, as well as slight modifications of the image for better recognition[@citetesseract][@citemagick][@citemagrittr]. 'diffr' was used to generate plots that compared the text files produced by the OCR from the previously mentioned packages and provide a visual comparison of two text documents[@citediffr]. 'RecordLinkage' and 'fuzzywuzzyR' were both used to generate a percentage difference between two text documents using different algorithms[@citeRecord][@citefuzzy1][@citefuzzy2]. 'reticulate' was used to install the correct python environment for package 'fuzzywuzzyR' to function properly[@citereticulate].
 
 ## Where this data comes from
-While there is no direct rational behind the use of these particular title for this investigation, the overall goal of this investigation was to look at texts that were on different parts of the spectrum. Two books were used to represent the opposite sides of the spectrum, as well as a standard. In this investigation, the following books were used as sources for samples for the OCR:
+While there is no direct rational behind the use of these particular books for this investigation, the overall goal of this investigation was to look at texts that were on different parts of the spectrum. Two books were used to represent the opposite sides of the spectrum of time, as well as a standard. In this investigation, the following books were used as sources for samples for the OCR:
 
-* "Basic and Clinical Pharmacology 14th Edition" by Bertram E. Katzung
-* "Life and Literature Book One Grade 7" by The Ministry of Education For Ontario
+* Book 1: "Basic and Clinical Pharmacology 14th Edition" by Bertram E. Katzung
+* Book 2: "Life and Literature Book One Grade 7" by The Ministry of Education For Ontario
+
+Page 1 of the following book was used as a standard:
 * "The Life and Work of Fredson Bowers" by G. Thomas Tanselle
 
-Katzung represents more recent texts that have clean and non-intrusive text, alongside the fact that a digital copy of this book is available to retrieve the original text for comparison[@katzung2018]. Tanselle is commonly used as a standard for testing OCR, as it was seen to be used in multiple sources that talked about the uses of OCR and tesseract [@tanselle1993]. Life and Literature then represents the other end of the spectrum that was described in the introduction, looking at texts that may have faded texts due to aging as well as wear-and-tear, causing the text to become illegiable in some cases. Overall, the goal was met, where we have samples from different parts of texts that are still in circulation in some public libraries. 
+"Basic and Clinical Pharmacology 14th Edition" [@katzung2018] represents more recent texts that have clean and non-intrusive text, alongside the fact that a digital copy of this book is available to retrieve the original text for comparison. "The Life and Work of Fredson Bowers" [@tanselle1993] was chosen as the standard, as it was commonly used as a standard for testing OCR, as it was seen to be used in multiple sources that talked about the uses of OCR and tesseract [@photo1][@ooms_2017]. "Life and Literature" then represents the other end of the spectrum that was described in the introduction, looking at texts that may have faded texts due to aging as well as wear-and-tear, causing the text to become illegible in some cases. Overall, the goal was met, where we have samples from different parts of texts that are still in circulation in some public libraries. 
 
 ## Data Selection and Concern
 In this report, due to the sheer size of the books that were chosen as the samples for OCR (The Pharmacology Textbook has over 1200 pages in it, where as Life and Literature has over 300), 5 pages from each book were selected to represent a portion of the book. To remove any related bias, a random number generator was used to select page numbers for each book (except the standard, as that uses page 1 of the book.) The use of a random number generator makes sure that the page numbers selected in succession have no common variable between them, removing any influence from the writer, and thus removing a source of bias [@haahr_2019]. For the case of the Pharmacology Textbook, because the pages have text split in half and to decrease the amount of artifacts that the OCR scans for, half of the page would also be selected. This would be done in the same manner as the random number generator used for the page selection of the books, where 1 would represent the left half of the page, and 2 would represent the right half of the page. Hence for this investigation, the following were chosen for OCR processing:
 
-* "Basic and Clinical Pharmacology 14th Edition" by Bertram E. Katzung
+* Book 1: "Basic and Clinical Pharmacology 14th Edition" by Bertram E. Katzung
   + Page 100, left half of page
   + Page 259, left half of page
   + Page 493, right half of page
   + Page 613, right half of page
   + Page 1099, right half of page
-* "Life and Literature Book One Grade 7" by The Ministry of Education For Ontario
+* Book 2: "Life and Literature Book One Grade 7" by The Ministry of Education For Ontario
   + Page 65
   + Page 127
   + Page 183
   + Page 235
   + Page 318
+
+For the rest of the paper, the books will be refered to as 'Book 1' and 'Book 2'.
 
 For this investigation, the selected pages have been digitized via photo taken from an iPhone X. (These photos can be found in the /input/data folder of the [github repository](https://github.com/Sampsonzhao/OCR-final). These photos would then be cropped to limit the amount of white spaces and artifacts that would be introduced into the produced OCR text file. Three levels of processing will be tested:
 
@@ -91,36 +115,139 @@ For this investigation, the selected pages have been digitized via photo taken f
 * Advanced Processing/Cleaning
   + This level contains a larger amount of digital processing, as the photos were put through a 3rd-party software (The software used in this investigation was 'Scanner Pro' by Readdle Technologies Limited). The software is able to produce scanner-like images based off of the photos that are uploaded to the software, and is able to correct warping of the page, get rid of any shadows that are in the raw photo, as well as boosting the brightness and contrast to ensure that almost all text is clear and visible. While this is no different from physically scanning the pages through a printer/scanner, these were not available at the time of this investigation due to a malfunction.
   
+These photos will then undergo a script, which will take the photo and process them based on their respective level. In the case of the photos that underwent the advanced image processing level, those will be processed on the 3rd-party app, then imported into the /inputs/data/ folders, as this app does not have an R related package that can be used. After the processing of the photos, they will run through the built-in OCR package in Magick, and the collected text will be exported, and stored for further analysis. This exported text data would then be compared to the original text, that is either collected through an digital copy of the book, or typed out manually. The comparison will produce both a visual comparison as well as a percent difference to the original, which would then be exported and stored. All of the previously mentioned files and scripts are available [here](https://github.com/Sampsonzhao/OCR-final).
+
+The use of the standard was to confirm that the OCR software would be working properly, as it was used to confirm that the accuracy percentage of a scanned document between raw, semi-processed and fully processed photos would be similar, as the documentation would require no additional processing, and applying these modification to the original photo would be negligible, in terms of the change in accuracy. "The Life and Work of Fredson Bowers" by G. Thomas Tanselle would act as a positive control, while a blank piece of paper would act as a negative control. 
+
+## Understanding the Data: How accurate is OCR?
+```{r diff1, fig.cap= "Change in Accuracy Based on image processing For Book 1", echo = FALSE, message = FALSE, warning = FALSE}
+percent_diff_b1$bkpage <- as.character(percent_diff_b1$bkpage)
+
+percent_diff_b1 |>
+  ggplot(mapping = aes(x = bkpage, y=value, fill= variable))+
+  geom_bar(position='dodge', stat = 'identity')+
+  labs(title =  "Accuracy Percentage Between Levels of Image Processing (Book 1)", 
+       x = 'Page Number', y = 'Percentage')+
+  scale_fill_discrete(name = "Level of Image Processing", labels = c("Raw / Unprocessed", "Semi-Processed", "Fully Processed"))
+```
+ 
+
+In Figure \@ref(fig:diff1), the investigation reveals a similar trend that is common in most of the samples that were tested. There is a positive correlation between the amount of processing done on the raw photo and the accuracy of the exported text after running the photo through OCR. While this is to be expected, we can also see that this was not strictly followed, as there were some that saw no change after a small amount of image processing, most notable for Figure \@ref(fig:diff1) would be Page 1099 and page 259, as these two pages showed no increase in accuracy after processing. Page 613 showed an extreme reverse in this case, as after processing the photo through Magick, it was found to have a lower accuracy, compared to the raw photo. This phenomenon was seen multiple times through both Book 1 and Book 2. A closer investigation was done on Page 613 (As seen in \@ref(fig:pg613rawcomp) and \@ref(fig:pg613semicomp)), and it shows that there are errors throughout the entire text document of both the semi-processed and raw photos. Based on these comparisons, it can be assumed that the modifaction that were done on the raw photo through Magick may have created more artifacts, which in turn allowed the OCR software to pick up more errors, causing the decrease in accuracy after processing. This event may look like an outlier case, but there may be other factors that affect the accuracy of the OCR, which discussed in Section \@ref(problems-with-ocr).
 
 
+\newpage
 
-## Understanding the Data
+
+```{r diff2, fig.cap="Change in Accuracy Based on image processing For Book 2", message=FALSE, warning=FALSE, echo=FALSE}
+percent_diff_b2$bkpage_2 <- as.character(percent_diff_b2$bkpage_2)
+
+percent_diff_b2 |>
+  ggplot(mapping = aes(x = bkpage_2, y=value, fill= variable))+
+  geom_bar(position='dodge', stat = 'identity')+
+  labs(title =  "Accuracy Percentage Between Levels of Image Processing (Book 2)", 
+       x = 'Page Number', y = 'Percentage')+
+  scale_fill_discrete(name = "Level of Image Processing",labels = c("Raw / Unprocessed", "Semi-Processed", "Fully Processed"))
+```
+
+In the case of Figure \@ref(fig:diff2), we can see that there are examples of more extreme cases of the positive correlation between image processing and OCR accuracy, as most of the samples in book 2 show very little text being extracted from the photo without any processing. After some processing of the photo, we could see a fair increase in accuracy, when compared to the raw photo, and finally, after removing many of the artifacts through the advanced image processing software, we can see that most documents have a near 100% accuracy rate. While there is still an outlier, in sample Page 127, where we see the decrease in accuracy after some level of processing, a similar conclusion can be said about this outlier like the previous outlier, mentioned in the Figure \@ref(fig:diff1) description. The changes done through Magick may have faded some of the text or warped the text, leading to the OCR scan not being able to recognize the photo properly, causing the decrease in accuracy. The main difference that we can see between Figure \@ref(fig:diff1) and figure \@ref(fig:diff2) is the relatively low accuracy rate throughout all of the raw/unprocessed samples. This distinction is relative to the age of the original texts themselves, as different physical characteristics of book 2 can attribute to the lower accuracy rate. If we compare the raw photo for Book 1 and Book 2 (Shown in Appendix Figure \@ref(fig:b1raw) and \@ref(fig:b2raw)), we can see that Book 2 shows a yellowish paper, with variations in the texture of the paper, while book 1 shows a much more uniform texture. While these factors may not be significant to evaluating the accuracy of OCR, it shows some of the limitations of OCR when it comes to dealing with older texts.
+
+\newpage
+
+```{r table, fig.cap="Percent Representation of OCR scans for Book 1 (Left) and Book 2 (Right)", results='asis', message=FALSE, warning=FALSE, echo=FALSE}
+
+# Because of my lack of understanding of Latex Tables, I am unable to add a caption to this chart, and will refer to this table as table 1.
+
+percent_diff_b1table$bkpage <- as.character(percent_diff_b1table$bkpage)
+average_1 <- summarize_all(percent_diff_b1table, mean)
+percent_diff_b1table <- rbind(percent_diff_b1table, average_1)
+
+percent_diff_b1table$Percent_Difference_1 <- scales::percent(percent_diff_b1table$Percent_Difference_1)
+percent_diff_b1table$Percent_Difference_2 <- scales::percent(percent_diff_b1table$Percent_Difference_2)
+percent_diff_b1table$Percent_Difference_3 <- scales::percent(percent_diff_b1table$Percent_Difference_3)
+colnames(percent_diff_b1table) <- c('Page','Raw','Basic Processing','Advanced Processing')
+percent_diff_b1table[6,1] <- "Average"
+
+
+percent_diff_b2table$bkpage_2 <- as.character(percent_diff_b2table$bkpage_2)
+average_2 <- summarize_all(percent_diff_b2table, mean)
+percent_diff_b2table <- rbind(percent_diff_b2table, average_2)
+
+percent_diff_b2table$Percent_Difference_4 <- scales::percent(percent_diff_b2table$Percent_Difference_4)
+percent_diff_b2table$Percent_Difference_5 <- scales::percent(percent_diff_b2table$Percent_Difference_5)
+percent_diff_b2table$Percent_Difference_6 <- scales::percent(percent_diff_b2table$Percent_Difference_6)
+colnames(percent_diff_b2table) <- c('Page','Raw','Basic Processing','Advanced Processing')
+percent_diff_b2table[6,1] <- "Average"
+
+# The follow code was referenced from: https://gist.github.com/peterwsetter/cd2f8ecd83ba94235123e9fa8153946e
+# Setting `results = 'asis'` allows for using Latex within the code chunk
+cat('\\begin{table}')
+# `{c c}` Creates a two column table
+# Use `{c | c}` if you'd like a line between the tables
+cat('\\begin{tabular}{ c | c }')
+print(knitr::kable(percent_diff_b1table, format = 'latex', booktabs = TRUE) %>%
+        column_spec(1, width = "3em")%>%
+        column_spec(2, width = "4em")%>%
+        column_spec(3, width = "5em")%>%
+        column_spec(4, width = "5em"))
+# Separate the two columns with an `&`
+cat('&')
+print(knitr::kable(percent_diff_b2table, format = 'latex', booktabs = TRUE)%>%
+        column_spec(1, width = "3em")%>%
+        column_spec(2, width = "4em")%>%
+        column_spec(3, width = "5em")%>%
+        column_spec(4, width = "5em"))
+cat('\\end{tabular}')
+cat('\\caption{\\label{tab:table-name}Percent Representation of OCR scans for Book 1 (Left) and Book 2 (Right).}')
+cat('\\end{table}')
+```
+
+Table \@ref(tab:table-name) above represents the numerical representation of the graphs seen in figure \@ref(fig:diff1) and figure \@ref(fig:diff2). While the information that is shown on this table is the same as the aforementioned graphs, this table also gives a relative view of comparing the average accuracy for each book. We can see that while both books eventually reach a very high level of accuracy (over 90% for both books)after enough image processing, we can see the relative ineffectiveness of the basic processing, when compared to the raw photo. In the case of both books, we see that the basic image processing provided by Magick is unable to increase the accuracy of the OCR scan, and in book 1, it seemed to have a negative effect on accuracy as well. While this may be attributed to the photo being over-trimmed, leading issues with spacing between each letter, we can also look into comparing the averages between the two books. We can see that most likely due to the age of the book and an increase in artifacts and marks on the pages of book 2, we see that the average accuracy rates for all three levels of processing are considerably lower then that of book 1. This may be due to a number of different factors, but most notably, the difference of paper type (book 1 tend to have more glossy paper, while book 2 had more textured/matte paper) may have caused some issues relating to how OCR recognizes blemishes, leading to the decrease in accuracy. 
+
 # Discussion
 ## Problems with OCR
 While OCR is a very convenient piece of software that allows us to quickly translate information from a photo into an interactable piece of digital text, there are still many flaws associated to the software itself. For example, while dealing with the images for Book 1, there was a issue related to the overall format of the text. OCR is not able to differentiate between full-page texts and split page text, hence it does not recognize the difference between them. This would then cause errors for the right half of the text, as the spacing between the two bodies of text throws off the OCR recognition, causing the corruption of the data on the right hand side. From this investigation, it was observed that the spacing between each character, as well as the spacing between bodies of text affect how Tesseract views the text itself. While this wouldn't be a big problem in normal circumstances, it would be an issue while looking into the further goals of OCR. The lack of flexibility in OCR, as well as the lack of understanding in sentence structures are one of the downfalls of the software. Though these are easily ameliorated in the form of restricting recognition of text, as well as restricting white spaces, this may become an issue for how OCR can be used in text recovery and text recognition in older texts. 
 
 Based on a similar issue as mentioned above, we can also look into the artifacts that are introduced due to how the original text is captured. Though in Section \@ref(where-this-data-comes-from), it was mentioned that all the photos have some level of cropping done to it. For Book 1 (Basic and Clinical Pharmacology), texts were limited to only half of the page, as there was no continuity in the sentence, as well as OCR not recognizing the white space used to separate the two columns of text. Though that played a large factor in generating large amounts of garbled data in the exported text file, artifacts on the edge of the photo, like the area marked in red in Figure \@ref(fig:edge), have been found to also cause some errors, as any sort of lines would be recognized as text by OCR. Hence, in the case of all of the photos that were taken in a similar manner, all of the edges were removed to make sure that there would not be false hits from the OCR scan. 
 
-```{r edge, fig.cap="Edge of photo is recognized by Tesseract as text", echo = FALSE, message = FALSE, warning = FALSE, fig.pos="H", out.height = "30%", fig.align = 'center'}
+```{r edge, fig.cap="Edge of photo is recognized by Tesseract as text", echo = FALSE, message = FALSE, warning = FALSE, fig.pos="H", out.height = "50%", fig.align = 'center'}
 # Picture is from Basic and Clinical Pharmacology (Book 1, Page 100)
 knitr::include_graphics(here::here('inputs/data/Book1/images/book1_100_marked.jpg'))
 ```
 
 
-In addition to cropping photos, there were various image manipulations done to further increase the accuracy of the OCR scans. If we look back at Figure __ (Refer to chart generated from 02-percent_diff), we can see how important being able to clean and remove any artifacts from the photo, as we tend to see an positive correlation between cleaning and percent recognition. This brings into light the different photo manipulations needed, and how that might take away from the original text. In the case of comparing the raw photo to the semi-processed photo, we can see that even just removing colour and increasing the brightness and contrast, would generally be enough for the OCR software to recognize the text better. To be more accurate, the hypothesis for this phenomenon is more related to how the OCR software is unable to see flaws and artifacts if the brightness and contrast is increased. By modifying the photo slightly, the software is able to discern better the difference between text and random debris, allowing for increased accuracy in the text output. This is significant, due to the fact that not every photo is as clean as a scanner, as photos generally have large amounts of scrap data in the periphery, causing the OCR to incorrectly identify the characters, sometimes causing OCR scans to show up as errors.
-
-The same could be said when comparing both the raw photos and the semi-processed photos to the photos that underwent advanced image processing, as a clear jump in accuracy was seen, when looking at Figure__ (Refer to chart generated from 02-percent_diff). This section of photos are most reminiscent to 
-
-
+In addition to cropping photos, there were various image manipulations done to further increase the accuracy of the OCR scans. If we look back at Table \@ref(tab:table-name), we can see how important being able to clean and remove any artifacts from the photo, as we tend to see an positive correlation between cleaning and percent recognition. This brings into light the different photo manipulations needed for a clean scan, and how that might take away from the original text. In the case of comparing the raw photo to the semi-processed photo, we can see that even just removing colour and increasing the brightness and contrast a bit, would generally be enough for the OCR software to recognize the text better. To be more accurate, the hypothesis for this phenomenon is more related to how the OCR software is unable to see flaws and artifacts if the brightness and contrast is increased. By modifying the photo slightly, the software is able to discern better the difference between text and random debris, allowing for increased accuracy in the text output. This is significant, due to the fact that not every photo is as clean as a scanner, as photos generally have large amounts of scrap data in the periphery, causing the OCR to incorrectly identify the characters, sometimes causing OCR scans to show up as errors. The same can be said when looking at the accuracy when more image processing is done on the samples. By completely removing all colour from the images, as well as being able to correct the warping of the image due to the natural curve of the book, the OCR scan was able, in most cases, get a clean scan of the entire document. Based on the accuracy reports in Figure \@ref(fig:diff1) and \@ref(fig:diff2), we can see how significant those changes can be, which supports the implementation of full image processing along side OCR for cleaner and more accurate text extraction. 
 
 
 ## Progress with OCR
 
-In general, if this experiment was repeated, a suggestion can be made to increase the accuracy overall, by scanning the pages of texts, as well as preventing large shadows from being shown, as both of these factors have affected the overall percentage difference between the 3 levels of image processing. It is understandable that scanning certain books may not be possible, as it may incur damage to the physical item itself. As the premise of this paper is looking at how OCR can be used in the digitization of older materials. For example Book 2 (Life and Literature), this is an item from 1943. The age of the item as well as the physical condition of the item was considered to be fairly poor and would not have faired well if the spine was overextended. Scanning of many older literature would not be feasible, hence photos would be the next best alternative. While third-party softwares were available for this investigation, there have been progress in the overall OCR recognition, as there were mentions of OCR being able to discern text from uneven surfaces. While it was not apparent during this investigation, it is something that is progressing in the field of OCR, and would become a very powerful tool for those who wish to continue the digitization of many older texts. If used properly, image processing softwares could have OCR built into the overall application, allowing for less processing on the OCR side.
+In general, if this experiment was repeated, a suggestion can be made to increase the accuracy overall, by scanning the pages of texts, as well as preventing large shadows from being shown, as both of these factors have affected the overall percentage difference between the 3 levels of image processing. It is understandable that scanning certain books may not be possible, as it may incur damage to the physical item itself. As the premise of this paper is looking at how OCR can be used in the digitization of older materials. For example Book 2 (Life and Literature), this is an item from 1943. The age of the item as well as the physical condition of the item was considered to be fairly poor and would not have faired well if the spine was overextended. Scanning of many older literature would not be feasible, hence photos would be the next best alternative. While third-party software were available for this investigation, there have been progress in the overall OCR recognition, as there were mentions of OCR being able to discern text from uneven surfaces. While it was not apparent during this investigation, it is something that is progressing in the field of OCR, and would become a very powerful tool for those who wish to continue the digitization of many older texts. If used properly, image processing software could have OCR built into the overall application, allowing for less processing on the OCR side.
 
+Overall, OCR has become a tool that is important in both the professional environment and in every day use, as it is a tool that allows us to quickly scan and produce digital copies of text. People may use this tool to quickly scan and create modifiable versions of these texts, allowing for a much more flexible experience to the material. And in the professional environment, written documents can be scanned and deciphered to produce digital copies of these texts, if the OCR was fed hand-written fonts.
 
 ## Further Development of OCR alongside the development of A.I.
+There was discussions going on talking about the use of A.I. in relation to OCR, as it would be something that can be used in tandem with OCR to improve the overall accuracy of the software itself. The hypothesis of this theory is that OCR would be able to use A.I neural learning to collect different variations of fonts, texts, sentence structures, formats, etc. and use the collected information to better build the optical recognition of different fonts. This may also be something that increase accuracy in older texts, A.I. can be implimented in a way to suggest letters that may have been missing due to wear-and-tear, as well as the imperfections from the capture method of the photo. These factors were main concerns when working with the samples in this investigation. Though A.I. has not developed far enough for this use-case, it is something that can help progress the use of OCR in future projects, allowing for clearer and more precise scans, and producing more accurate text representations. 
+
 # Conclusion
+OCR is a fascinating piece of software that has existed since the 1910s, starting off as an auxiliary tool for reading devices for the blind, and now, its commonly used in tandem with many pieces of software to produce functionality in many applications. As a tool that has been evolving over the past 110 years, it has allowed people to accurately transform and digitize documents, and allow for them to be edited and searched electronically. While the progression in the development of OCR has slowed down a lot in recent years, the technology is still slowly growing, with the addition of A.I. learning, leading to the increase in accuracy of text outputs. This investigation was able to show that with enough image processing, such as reducing the amount of shadows, increasing the brightness and contrast, as well as removing saturation of the photo, would allow for a near 100% accuracy rate. But this investigation also shows the downfalls of OCR as of right now, as it is not able to discern between a ripple in the page and a letter in the alphabet. OCR itself is still growing to be able to adapt to these artifacts, but for now, it is still a technology that is slowly becoming something that can bring light to books of the past. 
+
+
+\newpage
 # Appendix
+```{r pg613rawcomp, fig.cap= "Comparison of Raw Photo OCR to Original of Page 613 of Book 1", echo = FALSE, message = FALSE, warning = FALSE, fig.show='hold',fig.align='center', out.height="70%"}
+knitr::include_graphics(here::here('inputs/data/b_1_4_rawcomp.png'))
+```
+```{r pg613semicomp, fig.cap= "Comparison of Semi-Processed Photo OCR to Original of Page 613 of Book 1", echo = FALSE, message = FALSE, warning = FALSE, fig.show='hold',fig.align='center', out.height="70%"}
+knitr::include_graphics(here::here('inputs/data/b_1_4_semicomp.png'))
+```
+
+```{r b1raw, fig.cap= "Raw Photo of Page 100 of Book 1", echo = FALSE, message = FALSE, warning = FALSE, fig.show='hold',fig.align='center', out.extra='angle=270', out.height="70%"}
+knitr::include_graphics(here::here('inputs/data/Book1/images/book1_100.jpg'))
+```
+```{r b2raw, fig.cap= "Raw Photo of Page 65 of Book 2", echo = FALSE, message = FALSE, warning = FALSE, fig.show='hold',fig.align='center'}
+knitr::include_graphics(here::here('inputs/data/Book2/images/book2_65.jpg'))
+```
+
+
+\newpage
 # References
 

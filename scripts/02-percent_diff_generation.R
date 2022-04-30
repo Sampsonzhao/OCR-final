@@ -20,7 +20,11 @@ library(magrittr)
 library(diffr)
 library(RecordLinkage)
 library(readr)
+reticulate::py_config()
+library(reticulate)
 library(fuzzywuzzyR)
+library(reshape2)
+
 
 # Because the data is developed from images taken from /inputs/, they will be 
 # loaded and processed before being accessed in the main document. All images 
@@ -102,11 +106,15 @@ comp_5b <- SequenceMatcher$new(string1 = orig_5, string2 = a_5)
 percentdiff_a_5 <- comp_5b$ratio()
 
 # enter data into CSV
-Percent_Difference_Advanced <- c(percentdiff_a_1, percentdiff_a_2, percentdiff_a_3, percentdiff_a_4, percentdiff_a_5)
-Percent_Difference_Uncleaned <- c(percentdiff_uc_1,percentdiff_uc_2,percentdiff_uc_3,percentdiff_uc_4,percentdiff_uc_5)
-Percent_Difference_cleaned <- c(percentdiff_c_1,percentdiff_c_2,percentdiff_c_3,percentdiff_c_4,percentdiff_c_5)
+Percent_Difference_3 <- c(percentdiff_a_1, percentdiff_a_2, percentdiff_a_3, percentdiff_a_4, percentdiff_a_5)
+Percent_Difference_1 <- c(percentdiff_uc_1,percentdiff_uc_2,percentdiff_uc_3,percentdiff_uc_4,percentdiff_uc_5)
+Percent_Difference_2 <- c(percentdiff_c_1,percentdiff_c_2,percentdiff_c_3,percentdiff_c_4,percentdiff_c_5)
+bkpage <- c('100','259','493','613','1099')
 
-Percent_Difference <- as.data.frame(cbind(Percent_Difference_Uncleaned, Percent_Difference_cleaned, Percent_Difference_Advanced), stringsAsFactors = FALSE)
+Percent_Difference <- as.data.frame(cbind(bkpage, Percent_Difference_1, Percent_Difference_2, Percent_Difference_3), stringsAsFactors = FALSE)
+
+# Percent_Difference <- melt(Percent_Difference, id.vars = 'bkpage')
+
 write_csv(Percent_Difference, here::here("inputs/data/book_1_percent_diff.csv"))
 
 #Everything from here is processing images for the paper. This section will be 
@@ -186,10 +194,14 @@ percentdiff_a_10 <- comp_10b$ratio()
 
 
 # enter data into CSV
-Percent_Difference_Advanced_book2 <- c(percentdiff_a_6, percentdiff_a_7, percentdiff_a_8, percentdiff_a_9, percentdiff_a_10)
-Percent_Difference_Uncleaned_book2 <- c(percentdiff_uc_6,percentdiff_uc_7,percentdiff_uc_8,percentdiff_uc_9,percentdiff_uc_10)
-Percent_Difference_cleaned_book2 <- c(percentdiff_c_6,percentdiff_c_7,percentdiff_c_8,percentdiff_c_9,percentdiff_c_10)
+Percent_Difference_6 <- c(percentdiff_a_6, percentdiff_a_7, percentdiff_a_8, percentdiff_a_9, percentdiff_a_10)
+Percent_Difference_4 <- c(percentdiff_uc_6,percentdiff_uc_7,percentdiff_uc_8,percentdiff_uc_9,percentdiff_uc_10)
+Percent_Difference_5 <- c(percentdiff_c_6,percentdiff_c_7,percentdiff_c_8,percentdiff_c_9,percentdiff_c_10)
+bkpage_2 <- c('65','127','183','235','318')
 
-Percent_Difference_2 <- as.data.frame(cbind(Percent_Difference_Uncleaned_book2, Percent_Difference_cleaned_book2, Percent_Difference_Advanced_book2), stringsAsFactors = FALSE)
+Percent_Difference_2 <- as.data.frame(cbind(bkpage_2, Percent_Difference_4, Percent_Difference_5, Percent_Difference_6), stringsAsFactors = FALSE)
+
+# Percent_Difference_2 <- melt(Percent_Difference_2, id.vars = 'bkpage_2')
+
 write_csv(Percent_Difference_2, here::here("inputs/data/book_2_percent_diff.csv"))
 

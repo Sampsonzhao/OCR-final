@@ -18,6 +18,7 @@ library(RecordLinkage)
 library(readr)
 library(fuzzywuzzyR)
 
+
 # Because the data is developed from images taken from /inputs/, they will be 
 # loaded and processed before being accessed in the main document. All images 
 # accessed will be in png format before being placed in /inputs/ for consistency.
@@ -93,7 +94,7 @@ close(b1_5_uc)
 
 # processed photo OCR and export to text
 
-b1_1_cleaned <- image_read(here::here("inputs/data/Book1/images/book1_100_1_crop.jpg")) %>%
+b1_1_cleaned <- image_read(here::here("inputs/data/Book1/images/book1_100_1.jpg")) %>%
   image_resize("2000") %>%
   image_convert(colorspace = 'gray') %>%
   image_trim() %>%
@@ -181,7 +182,7 @@ b1_4_a<-file(here::here('inputs/data/Book1/b1_4_adv.txt'))
 writeLines(b1_4_adv, b1_4_a, useBytes = TRUE)
 close(b1_4_a)
 
-b1_5_adv <- image_read(here::here("inputs/data/Book1/images/book1_1099_2_crop.jpg")) %>%
+b1_5_adv <- image_read(here::here("inputs/data/Book1/images/book1_1099_adv.jpg")) %>%
   image_resize("2000") %>%
   image_trim() %>%
   image_ocr()
@@ -192,23 +193,23 @@ close(b1_5_a)
 
 # Compare the two generated OCR files to original text visually
 
-comp_uc_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_unclean.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_uc_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_unclean.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_uc_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_unclean.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_uc_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_unclean.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_uc_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_unclean.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
-
-comp_c_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_clean.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_c_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_clean.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_c_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_clean.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_c_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_clean.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_c_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_clean.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
-
-comp_a_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_adv.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_a_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_adv.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_a_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_adv.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_a_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_adv.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
-comp_a_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_adv.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_uc_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_unclean.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_uc_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_unclean.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_uc_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_unclean.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_uc_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_unclean.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_uc_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_unclean.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
+# 
+# comp_c_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_clean.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_c_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_clean.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_c_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_clean.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_c_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_clean.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_c_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_clean.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
+# 
+# comp_a_1_1 <- diffr(here::here('inputs/data/Book1/b1_1_adv.txt'), here::here('inputs/data/Book1/b1_1_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_a_1_2 <- diffr(here::here('inputs/data/Book1/b1_2_adv.txt'), here::here('inputs/data/Book1/b1_2_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_a_1_3 <- diffr(here::here('inputs/data/Book1/b1_3_adv.txt'), here::here('inputs/data/Book1/b1_3_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_a_1_4 <- diffr(here::here('inputs/data/Book1/b1_4_adv.txt'), here::here('inputs/data/Book1/b1_4_original.txt'), contextSize = 0, minJumpSize = 500)
+# comp_a_1_5 <- diffr(here::here('inputs/data/Book1/b1_5_adv.txt'), here::here('inputs/data/Book1/b1_5_original.txt'), contextSize = 0, minJumpSize = 500)
 
 # Everything from here is processing images for the paper. This section will be 
 # processing items related to the second book, "Life and Literature Book One 
@@ -265,7 +266,6 @@ close(b2_1_c)
 
 b2_2_cleaned <- image_read(here::here("inputs/data/Book2/images/book2_127.jpg")) %>%
   image_resize("2000") %>%
-  image_modulate(brightness = 125) %>%
   image_contrast(sharpen = 2) %>%
   image_convert(colorspace = 'gray') %>%
   image_trim() %>%

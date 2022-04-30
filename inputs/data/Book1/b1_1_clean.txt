@@ -1,18 +1,24 @@
-100  SECTIONII Autonomic Drugs
-The sensory fibers in the nonadrenergic, Be ey,
-tems are probably better termed “sensory-efterent ae
-local effector” fibers because, when activated by a ae crit
+) 100 SECTION II Autonomic Drugs
 
-they are capable of releasing transmitter peptides from the s
+; : : 3
 
-aoe d from collaterals that
-ending itself, from local axon branches, an avn
+Ba The sensory fibers in the nonadrenergic, a a
+tems are probably better termed “sensory-efferent. Of ate
+local effector” fibers because, when activated by a ae ? a |
+
+they are capable of releasing transmitter peptides from the sensory
+
+wee d from collaterals that
+
+: ending itself, from local axon branches, an row
 terminate in the autonomic ganglia. These peptides SY
 agonists in many autonomic effector tissues.
 
 FUNCTIONAL ORGANIZATION OF
 
 AUTONOMIC ACTIVITY
+
+AUTONOMIC ACTINITE
 
 Autonomic function is integrated and regulated at many levels,
 
@@ -32,7 +38,7 @@ the sympathetic system an ergotropic one (ie, leading to energy
 expenditure), which is activated for “fight or flight.” Although
 such terms offer little insight into the mechanisms involved, they
 do provide simple descriptions applicable to many of the actions
-of the systems (Table 6—3). For example, slowing of the heart and
+of the systems (Table 6-3). For example, slowing of the heart and
 stimulation of digestive activity are typical energy-conserving and
 energy-storing actions of the parasympathetic system. In contrast,
 cardiac stimulation, increased blood sugar, and cutaneous vaso-
@@ -49,13 +55,15 @@ glossopharyngeal nerve have a major influence on sympathetic
 outflow from the vasomotor center, This example is described in
 greater detail in the following text. Similarly, parasympathetic sen-
 sory fibers in the wall of the urinary bladder significantly influence
-
 sympathetic inhibitory outflow to that organ. Within the ENS,
+
 sensory fibers from the wall of the gut synapse on both pregan-
 glionic and postganglionic motor neurons that control intestinal
-smooth muscle and secretory cells (Figure 6-2),
+smooth muscle and secretory cells (Figure 6~2).
+
 A. Integration of Cardiovascular Function
-Autonomic reflexes are particularly important in understand-
+
+Autonomic reflexes are particularly important in understand.
 ing cardiovascular responses to autonomic drugs. As indicated
 in Figure 6-7, the primary controlled variable in cardiovascular
 function is mean arterial pressure. Changes in any variable
